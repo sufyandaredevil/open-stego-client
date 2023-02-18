@@ -3,6 +3,9 @@ import requests
 import json
 import random
 
+PORT = '8080'
+URL = "http://127.0.0.1:" + PORT
+
 PngImagePlugin.MAX_TEXT_CHUNK = 100 * (1024**2)
 _2Bit_Dict = {"11" :[], "00" : [], "01" :[], "10" :[]}
 _2BRGBINMAP = []
@@ -27,7 +30,7 @@ def to_string(binstring):
 def send_map():
     mapfile_name = input("Enter map file name(with extension): ")
     file = {'map': open(mapfile_name, 'rb')}
-    url = 'http://127.0.0.1:8080/sendmap'
+    url = URL+'/sendmap'
 
     try:
         r = requests.post(url, files = file)
@@ -41,7 +44,7 @@ def send_map():
 
 def receive_map():
     token = input("Enter token: ")
-    url = 'http://127.0.0.1:8080/receivemap'
+    url = URL+'/receivemap'
     data = {'token': token}
     try:
         r = requests.post(url, data = data)

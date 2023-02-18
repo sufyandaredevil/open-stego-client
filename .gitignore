@@ -1,5 +1,5 @@
-*.png
 /env
 *.json
 *.txt
-*.jpg
+
+!requirements.txt
